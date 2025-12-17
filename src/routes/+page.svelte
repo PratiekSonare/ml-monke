@@ -1,0 +1,27 @@
+<script lang="ts">
+	import { onMount } from "svelte";
+    import '../app.css';
+
+    import Header from '$lib/components/Header.svelte';
+    import Footer from '$lib/components/Footer.svelte';
+    import MainPageLayout from '$lib/components/MainPageLayout.svelte';
+</script>
+
+<svelte:head>
+	<title>MLMonke</title>
+	<meta name="description" content="monke teaches you ml :3" />
+</svelte:head>
+
+<main>
+
+
+<Header />
+
+<MainPageLayout />
+
+<Footer />
+
+</main>
+<style>
+    @reference "tailwindcss";
+</style>
