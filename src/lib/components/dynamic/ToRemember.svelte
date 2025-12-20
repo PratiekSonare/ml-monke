@@ -4,7 +4,7 @@
 </script>
 
 <div
-    class="flex flex-col gap-1 w-1/2 p-3 bg-purple-400 border-8 border-purple-600"
+    class="flex flex-col gap-1 w-full p-3 bg-purple-400 border-8 border-purple-600"
 >
     <div class="mb-1 flex flex-row gap-2 items-center justify-center">
         <svg class="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -39,10 +39,10 @@
             </g></svg
         >
     </div>
-    <p class="text-lg italic text-center underline underline-offset-8">
+    <p class="text-lg mb-1 italic text-center underline underline-offset-8">
         {title}
     </p>
     {#each content as item}
-        <span class="text-lg italic"> • {item}</span>
+        <span class="text-lg italic -mb-1"> • {item}</span>
     {/each}
 </div>

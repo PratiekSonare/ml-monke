@@ -3,6 +3,8 @@
 	import Quote from "./dynamic/Quote.svelte";
 	import ToRemember from "./dynamic/ToRemember.svelte";
 	import AnimatedSection from "./dynamic/AnimatedSection.svelte";
+	import SequentialAnimator from "./dynamic/SequentialAnimator.svelte";
+
 	import beforelearning from "$lib/assets/before_learning.svg";
 	import afterlearning from "$lib/assets/after_learning.svg";
 	import whilelearning from "$lib/assets/while_learning.svg";
@@ -38,39 +40,6 @@
 		const halfWidth = track.scrollWidth / 2;
 		track.style.setProperty("--track-width", `${halfWidth}px`);
 	});
-
-	const content1 = [
-		{
-			content: 
-				'We\'ll discuss the <span class="text-3xl bFont">logic</span>, intuition and the <span class="text-3xl bFont">mathematics</span> behind each step of machine learning paradigms to properly understand each and every concept.',
-		}
-	];
-
-	const content2 = [
-		{
-			content:
-				'◦ less words, more learning. THIS IS <span class="text-3xl bFont">NOT</span> AN ACADEMIC TEXTBOOK.',
-			note: "[note: no academic paper has dancing monke gifs.]",
-			image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTER0tuZtB_opN6Lr9DxgL_lQbVUd8mX3381A&s",
-			imageAlt: "few words",
-		},
-		{
-			content:
-				'◦ i <span class="text-3xl bFont">hate</span> AI slop. everything is written using this Monke brain.',
-			image: "https://i.pinimg.com/736x/68/07/b0/6807b07a68d7aa045e2bfeebedee7d7d.jpg",
-			imageAlt: "big bwain",
-			imageClass: "w-64",
-		},
-		{
-			content: "◦ learn first, apply later.",
-			note: "No BS about learning quick! Learning never quick, must be as slow as possible to understand everything. learn at your own pace.",
-		},
-		{
-			content:
-				'◦ learning must be fun. <span class="text-3xl bFont">have fun</span>, hoo hoo hoo! :3',
-			note: "don't shy away from exploring the additional resources provided by me - the most learned monke.",
-		},
-	];
 </script>
 
 <svelte:window on:mousemove={handleMouseMove} on:mouseup={handleMouseUp} />
@@ -150,9 +119,64 @@
 			</div>
 		</div>
 
-		<AnimatedSection count={1} title="The idea:" items={content1} />
-		<AnimatedSection count={2} title="I follow:" items={content2} />
+		<Counter count={1} />
+		<p class="text-center text-lg px-3 -mt-10">
+			We'll discuss the <span class="text-3xl bFont">logic</span>,
+			intuition and the <span class="text-3xl bFont">mathematics</span> behind
+			each step of machine learning paradigms to properly understand each and
+			every concept.
+		</p>
 
+		<Counter count={2} />
+		<div class="text-center px-3 -mt-10 w-full">
+			<div class="text-3xl bFont mb-5">I follow:</div>
+			<div class="self-center  text-lg">
+
+				<div id="op-animation">
+					◦ less words, more learning. THIS IS <span
+						class="text-3xl bFont">NOT</span
+					>
+					AN ACADEMIC TEXTBOOK.<br />
+					<span class="italic text-sm"
+						>[note: no academic paper has dancing monke gifs.]</span
+					>
+					<img
+						class="mx-auto rounded-2xl border border-gray-300 mt-3 mb-10"
+						alt="few words"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTER0tuZtB_opN6Lr9DxgL_lQbVUd8mX3381A&s"
+					/>
+				</div>
+
+				<div id="op-animation">
+					◦ i <span class="text-3xl bFont">hate</span> AI slop. everything is written using this Monke brain.<br
+					/>
+					<img
+						class="mx-auto rounded-2xl border border-gray-300 mt-3 mb-10 w-64"
+						alt="big bwain"
+						src="https://i.pinimg.com/736x/68/07/b0/6807b07a68d7aa045e2bfeebedee7d7d.jpg"
+					/>
+				</div>
+
+				<div id="op-animation">
+					◦ learn first, apply later.<br />
+					<span class="italic text-sm"
+						>No BS about learning quick! Learning never quick, must be as slow as possible to understand everything. learn at your own pace.</span
+					>
+				</div>
+
+				<br />
+
+				<div class="mb-10"></div>
+				
+				<div id="op-animation">
+					◦ learning must be fun. <span class="text-3xl bFont">have fun</span>, hoo hoo hoo! :3<br />
+					<span class="italic text-sm mb-10"
+						>don’t shy away from exploring the additional resources provided by me - the most learned monke, Monke.</span
+					>
+				</div>
+
+			</div>
+		</div>
 		<!-- <Quote
 			pText="As Albert Einstein once said,"
 			quote="Life is like riding a bicycle. To keep your balance you must keep moving."

@@ -12,16 +12,12 @@
 	<meta name="description" content="monke teaches you ml :3" />
 </svelte:head>
 
-<main>
-
-
-<Header />
-
-<MainPageLayout />
-
-<Footer />
-
+<main class="h-screen flex flex-col overflow-hidden">
+    <Header />
+    <MainPageLayout />
+    <Footer />
 </main>
+
 <style>
     @reference "tailwindcss";
 </style>
