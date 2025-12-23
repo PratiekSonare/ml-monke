@@ -16,6 +16,7 @@
 	export let items: AnimationItem[] = [];
 	export let className: string = "";
 
+	let duration = "10s";
 	let isPlaying = false;
 	let currentIndex = -1;
 	let containerEl: HTMLElement;
@@ -46,13 +47,14 @@
 					block: "center",
 				});
 
-				// Animate opacity
+				// Animate opacity and background
 				itemEls[i].style.opacity = "1";
-				itemEls[i].style.transition = "opacity 0.5s ease-in-out";
+				itemEls[i].style.transition = `opacity ${Number(duration.replace("s", ""))/10}s ease-in-out, background-position ${duration} ease-in-out`;
+				itemEls[i].style.backgroundPosition = "left center";
 			}
 
 			// Wait before moving to next
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			await new Promise((resolve) => setTimeout(resolve, Number(duration.replace("s", "")) * 1000));
 		}
 
 		// If animation completed normally (not stopped), reset everything
@@ -72,13 +74,14 @@
 			if (el) {
 				el.style.opacity = "";
 				el.style.transition = "";
+				el.style.backgroundPosition = "";
 			}
 		});
 	}
 </script>
 
 <div class="flex flex-col gap-15 {className}">
-	<div class="flex flex-row items-center justify-center gap-3">
+	<div class="flex flex-row items-center justify-center gap-3 {isPlaying ? 'sticky top-0 z-10 bg-transparent py-2' : ''}">
 		<Counter {count} />
 		<button
 			on:click={isPlaying ? resetAnimation : playAnimation}
@@ -149,6 +152,11 @@
 	.animated-item {
 		opacity: 50%;
 		transition: opacity 0.3s ease-in-out;
+		background: linear-gradient(to left, rgba(59, 130, 246, 0.05) 50%, rgba(59, 130, 246, 0.1) 50%);
+		background-size: 200% 100%;
+		background-position: right center;
+		padding: 1rem;
+		border-radius: 0.5rem;
 	}
 
 	.animated-item:hover,

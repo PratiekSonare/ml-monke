@@ -11,9 +11,11 @@
 	import meme from "$lib/assets/neuron-activation-meme.svg";
 	import monke1Html from "../content/sidebar/monke-1.html?raw";
 	import ml1Html from "../content/sidebar/ml-1.html?raw";
+	import ai_slop from "../content/sidebar/ai-slop.html?raw";
 
 	import { onMount } from "svelte";
 	import MasterContentCard from "./dynamic/MasterContentCard.svelte";
+	import Syllabus from "./Syllabus.svelte";
 
 	const images = [beforelearning, whilelearning, afterlearning, learnermonke];
 
@@ -46,6 +48,10 @@
 			id: "ml-1",
 			content: ml1Html,
 		},
+		{
+			id: "ai-slop",
+			content: ai_slop,
+		}
 	];
 
 	let activeSidebarContent = "";
@@ -106,14 +112,11 @@
 		{
 			content:
 				'Usual ML courses are full of unnecessary jargon. Let us get <span class="text-3xl bFont">rid</span> of that.',
-				note: "researches after writing 200+ words of nothing",
-				image: "https://media1.tenor.com/m/sgJC3ykMjREAAAAC/how-bro-felt-after-saying-that.gif",
-				imageAlt: "monke memes",
-				imageClass: "w-64",
+			note: "researches after writing 200+ words of nothing",
 		},
 		{
 			content:
-				'Blogs? Too much text, more procrastination. Videos? I zone out easily. Hence, trying to make learning more <span class="text-3xl bFont">visually appealing!</span>',
+				'Blogs? Too much text, more procrastination.<br/>Videos? I zone out easily.<br/>Hence, trying to make learning more <span class="text-3xl bFont">visually appealing!</span>',
 		},
 		{
 			content: "Monke loves memes. Try learning with memes :3",
@@ -124,7 +127,7 @@
 		},
 		{
 			content:
-				"Following a 2-page approach! <br/>Left side: The idea. Right side: 5",
+				"Following a 2-page approach! <br/> Absorb more content with less scrolling.",
 		},
 		{
 			content:
@@ -142,7 +145,7 @@
 		},
 		{
 			content:
-				'◦ i <span class="text-3xl bFont">hate</span> AI slop. everything is written using this Monke brain.',
+				'◦ i <span class="text-3xl bFont">hate</span> <span id="ai-slop" class="monkeText">AI slop</span>. everything is written using this Monke brain.',
 			image: "https://i.pinimg.com/736x/68/07/b0/6807b07a68d7aa045e2bfeebedee7d7d.jpg",
 			imageAlt: "big bwain",
 			imageClass: "w-64",
@@ -162,6 +165,158 @@
 			content:
 				'◦ learning must be fun. <span class="text-3xl bFont">have fun</span>, hoo hoo hoo! :3',
 			note: "don't shy away from exploring the additional resources provided by me - the most learned monke.",
+		},
+	];
+
+	const syllabus_1 = [
+		{
+			id: 1,
+			title: "Basic Mathematics",
+			subtitle: "Linear Algebra + Probability + Basic Calculus",
+			bgColor: "bg-blue-50",
+			borderColor: "border-blue-500",
+			sections: [
+				{
+					id: "1.1",
+					title: "Functions",
+					subtitle: "(input → output)",
+					items: [
+						"1.1.1 Linear v/s Non-linear",
+						"1.1.2 What are models output?",
+						"1.1.3 Activation Functions: Need, Purpose",
+					],
+				},
+				{
+					id: "1.2",
+					title: "Scalars, Vectors & Matrices",
+					items: [
+						"1.2.1 Cross Product, Dot Product",
+						"1.2.2 Identity Matrices",
+						"1.2.3 Eigenvalues & Eigenfunctions (PCA)",
+						"1.2.4 Weight + Biases matrices",
+					],
+				},
+				{
+					id: "1.3",
+					title: "Differentiation",
+					items: ["1.3.1 Diff", "1.3.2 Loss Functions & BP in short"],
+				},
+				{
+					id: "1.4",
+					title: "Probability & Stats",
+					items: [
+						"1.4.1 Random Variables",
+						"1.4.2 Distributions",
+						"1.4.3 Conditional Prob & Bayes Theorem",
+						"1.4.4 Mean, Var, Std. for discrete and cont samples",
+					],
+				},
+			],
+		},
+	];
+
+	const syllabus_2 = [
+		{
+			id: 2,
+			title: "Machine Learning",
+			subtitle: "huh.",
+			bgColor: "bg-purple-50",
+			borderColor: "border-purple-500",
+			sections: [
+				{
+					id: "2.1",
+					title: "Motivation",
+					items: ["2.1.1 Supervised v/s Unsupervised"],
+				},
+				{
+					id: "2.2",
+					title: "Model",
+					items: ["2.2.1 Training, Evaluation"],
+				},
+				{
+					id: "2.3",
+					title: "Data",
+					items: [
+						"2.3.1 What kind of data required",
+						"2.3.2 Augmentation techniques",
+						"2.3.3 Encoding",
+					],
+				},
+			],
+		},
+	];
+
+	const syllabus_3 = [
+		{
+			id: 3,
+			title: "Regression",
+			subtitle: "",
+			bgColor: "bg-orange-50",
+			borderColor: "border-orange-500",
+			sections: [
+				{
+					id: "3.1",
+					title: "Linear",
+					items: [],
+				},
+				{
+					id: "3.2",
+					title: "Quadratic",
+					items: [],
+				},
+				{
+					id: "3.3",
+					title: "Multivariable",
+					items: [],
+				},
+				{
+					id: "3.4",
+					title: "Logistic",
+					items: [],
+				},
+			],
+		},
+	];
+
+	const syllabus_4 = [
+		{
+			id: 4,
+			title: "Classification",
+			subtitle: "",
+			bgColor: "bg-green-50",
+			borderColor: "border-green-500",
+			sections: [
+				{
+					id: "4.1",
+					title: "Linear, Non-linear Classifiers",
+					items: [],
+				},
+				{
+					id: "4.2",
+					title: "SVMs, Hyperplanes, Linear Separability",
+					items: [],
+				},
+				{
+					id: "4.3",
+					title: "K-Nearest Neighbour",
+					items: [],
+				},
+				{
+					id: "4.4",
+					title: "Decision Trees, Entropy",
+					items: [],
+				},
+				{
+					id: "4.5",
+					title: "Ensemble Techniques, Random Forest, AdaBoost",
+					items: [],
+				},
+				{
+					id: "4.6",
+					title: "Perceptron, MLP basics",
+					items: [],
+				},
+			],
 		},
 	];
 </script>
@@ -244,6 +399,12 @@
 			</div>
 		</div>
 
+		<img
+			class="mx-auto my-5 w-1/4"
+			src="/src/lib/assets/div.svg"
+			alt="divider"
+		/>
+
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div id="carousel" class="carousel-container w-full">
 			<div class="carousel-track" style="animation-play-state: running">
@@ -253,13 +414,38 @@
 			</div>
 		</div>
 
+		<img
+			class="mx-auto my-5 w-1/4"
+			src="/src/lib/assets/div.svg"
+			alt="divider"
+		/>
+
 		<div class="flex flex-col gap-5 justify-center items-center">
 			<h1 class="text-4xl">Concept</h1>
 			<MasterContentCard
-				n={3}
+				n={2}
 				leftContent={content1}
 				rightContent={content2}
 			/>
+		</div>
+
+		<img
+			class="mx-auto my-5 w-1/4"
+			src="/src/lib/assets/div.svg"
+			alt="divider"
+		/>
+
+		<div
+			class="flex flex-col gap-5 justify-center items-center w-full px-8"
+		>
+			<h1 class="text-4xl mb-4">Syllabus</h1>
+
+			<div class="flex flex-row gap-0">
+				<Syllabus syllabus={syllabus_1} />
+				<Syllabus syllabus={syllabus_2} />
+				<Syllabus syllabus={syllabus_3} />
+				<Syllabus syllabus={syllabus_4} />
+			</div>
 		</div>
 
 		<!-- <Quote
