@@ -14,6 +14,7 @@
 	}
 
 	export let items: AnimationItem[] = [];
+	export let className: string = "";
 
 	let isPlaying = false;
 	let currentIndex = -1;
@@ -76,64 +77,71 @@
 	}
 </script>
 
-<div class="flex flex-row items-center justify-center gap-3">
-	<Counter {count} />
-	<button
-		on:click={isPlaying ? resetAnimation : playAnimation}
-		class="scale-75 play-button rounded-full border-4 border-black w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-gray-100 active:scale-95 transition-all duration-300"
-		aria-label={isPlaying ? "Stop animation" : "Play animation"}
-	>
-		{#if isPlaying}
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="w-5 h-5"
-				viewBox="0 0 24 24"
-				fill="currentColor"
-			>
-				<rect x="6" y="4" width="4" height="16" />
-				<rect x="14" y="4" width="4" height="16" />
-			</svg>
-		{:else}
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="w-5 h-5 ml-0.5"
-				viewBox="0 0 24 24"
-				fill="currentColor"
-			>
-				<polygon points="5,3 19,12 5,21" />
-			</svg>
-		{/if}
-	</button>
-</div>
+<div class="flex flex-col gap-15 {className}">
+	<div class="flex flex-row items-center justify-center gap-3">
+		<Counter {count} />
+		<button
+			on:click={isPlaying ? resetAnimation : playAnimation}
+			class="scale-75 play-button rounded-full border-4 border-blue-500 w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-gray-100 active:scale-95 transition-all duration-300"
+			aria-label={isPlaying ? "Stop animation" : "Play animation"}
+		>
+			{#if isPlaying}
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-5 h-5"
+					viewBox="0 0 24 24"
+					fill="#3b82f6"
+				>
+					<rect x="6" y="4" width="4" height="16" />
+					<rect x="14" y="4" width="4" height="16" />
+				</svg>
+			{:else}
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-5 h-5 ml-0.5"
+					viewBox="0 0 24 24"
+					fill="#3b82f6"
+				>
+					<polygon points="5,3 19,12 5,21" />
+				</svg>
+			{/if}
+		</button>
+	</div>
 
-<div bind:this={containerEl} class="text-center px-3 -mt-10 w-full">
-	{#if title}
-		<div class="text-3xl bFont mb-5">{title}</div>
-	{/if}
-	<div class="self-center text-lg">
-		{#each items as item, i}
-			<div
-				bind:this={itemEls[i]}
-				class="animated-item mt-10"
-				class:active={currentIndex === i}
-			>
-				<slot name="item" {item} index={i}>
-					{@html item.content}
-				</slot>
-				{#if item.note}
-					<br />
-					<span class="italic text-sm">{item.note}</span>
+	<div bind:this={containerEl} class="text-center px-3 w-full">
+		{#if title}
+			<div class="text-3xl bFont">{title}</div>
+		{/if}
+		<div class="self-center text-lg">
+			{#each items as item, i}
+				<div
+					bind:this={itemEls[i]}
+					class="animated-item"
+					class:active={currentIndex === i}
+					class:mt-5={i === 0}
+					class:mb-5={i === items.length - 1}
+				>
+					<slot name="item" {item} index={i}>
+						{@html item.content}
+					</slot>
+					{#if item.note}
+						<br />
+						<span class="italic text-sm">{item.note}</span>
+					{/if}
+					{#if item.image}
+						<img
+							class="mx-auto rounded-2xl img-border mt-3 {item.imageClass ||
+								''}"
+							alt={item.imageAlt || ""}
+							src={item.image}
+						/>
+					{/if}
+				</div>
+				{#if i < items.length - 1}
+					<div class="rounded-full w-8 h-1 bg-gray-300 mx-auto my-5"></div>
 				{/if}
-				{#if item.image}
-					<img
-						class="mx-auto rounded-2xl border border-gray-300 mt-3 {item.imageClass ||
-							''}"
-						alt={item.imageAlt || ""}
-						src={item.image}
-					/>
-				{/if}
-			</div>
-		{/each}
+			{/each}
+		</div>
 	</div>
 </div>
 
