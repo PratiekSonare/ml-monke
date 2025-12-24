@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let count: number = 1;
+    export let count: string = "";
 </script>
 
 <div class="bg-white rounded-full border-4 border-black cursor-pointer scale-100 active:scale-95 transition-all duration-300">

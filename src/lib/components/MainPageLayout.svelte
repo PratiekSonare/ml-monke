@@ -51,7 +51,7 @@
 		{
 			id: "ai-slop",
 			content: ai_slop,
-		}
+		},
 	];
 
 	let activeSidebarContent = "";
@@ -172,14 +172,14 @@
 		{
 			id: 1,
 			title: "Basic Mathematics",
-			subtitle: "Linear Algebra + Probability + Basic Calculus",
+			subtitle: "Linear Algebra + Probability + Calculus",
 			bgColor: "bg-blue-50",
 			borderColor: "border-blue-500",
 			sections: [
 				{
 					id: "1.1",
 					title: "Functions",
-					subtitle: "(input → output)",
+					subtitle: "",
 					items: [
 						"1.1.1 Linear v/s Non-linear",
 						"1.1.2 What are models output?",
@@ -348,7 +348,7 @@
 	<div
 		id="main-content"
 		style="width: {100 - sidebarWidth}%"
-		class="overflow-y-auto overflow-x-hidden flex flex-col gap-15 items-center py-4"
+		class="overflow-y-auto overflow-x-hidden flex flex-col gap-2 items-center py-4"
 	>
 		<div
 			class="flex flex-row items-center justify-center w-full gap-5 px-4"
@@ -380,12 +380,7 @@
 					Monke teaches you
 					<span id="ml-1" class="mlText">machine learning</span>.
 				</p>
-				<p>
-					Less words, more learning. <span
-						id="monke-1"
-						class="monkeText">Monke</span
-					> happy, you happy :3
-				</p>
+				<p>Less words, more learning. Monke happy, you happy :3</p>
 			</div>
 
 			<div class="scale-90 w-full">
@@ -396,6 +391,25 @@
 						"Also try selecting a bunch of text and exploring the AI Explanation!",
 					]}
 				/>
+			</div>
+		</div>
+
+		<img
+			class="mx-auto my-5 w-1/4"
+			src="/src/lib/assets/div.svg"
+			alt="divider"
+		/>
+
+		<div
+			class="flex flex-col gap-5 justify-center items-center w-full px-8"
+		>
+			<h1 class="text-4xl mb-4">Syllabus</h1>
+
+			<div class="flex flex-row gap-0">
+				<Syllabus syllabus={syllabus_1} />
+				<Syllabus syllabus={syllabus_2} />
+				<Syllabus syllabus={syllabus_3} />
+				<Syllabus syllabus={syllabus_4} />
 			</div>
 		</div>
 
@@ -419,7 +433,6 @@
 			src="/src/lib/assets/div.svg"
 			alt="divider"
 		/>
-
 		<div class="flex flex-col gap-5 justify-center items-center">
 			<h1 class="text-4xl">Concept</h1>
 			<MasterContentCard
@@ -428,42 +441,6 @@
 				rightContent={content2}
 			/>
 		</div>
-
-		<img
-			class="mx-auto my-5 w-1/4"
-			src="/src/lib/assets/div.svg"
-			alt="divider"
-		/>
-
-		<div
-			class="flex flex-col gap-5 justify-center items-center w-full px-8"
-		>
-			<h1 class="text-4xl mb-4">Syllabus</h1>
-
-			<div class="flex flex-row gap-0">
-				<Syllabus syllabus={syllabus_1} />
-				<Syllabus syllabus={syllabus_2} />
-				<Syllabus syllabus={syllabus_3} />
-				<Syllabus syllabus={syllabus_4} />
-			</div>
-		</div>
-
-		<!-- <Quote
-			pText="As Albert Einstein once said,"
-			quote="Life is like riding a bicycle. To keep your balance you must keep moving."
-			sText="So keep learning and growing!"
-		/>
-
-		<Formula formula="E = mc^2" />
-
-		<ToRemember
-			title="Big Bwain Einstein"
-			content={[
-				"E = mc^2",
-				"Energy equals mass times the speed of light squared",
-				"This equation is a fundamental principle of physics.",
-			]}
-		/> -->
 	</div>
 </div>
 

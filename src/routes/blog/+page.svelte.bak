@@ -1,0 +1,481 @@
+<script lang="ts">
+	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+
+	// Available blog sections
+	const blogSections = [
+		{
+			id: "1.1",
+			parentId: "1",
+			childId: "1",
+			title: "Functions",
+			description: "Understanding mathematical functions, linear vs non-linear relationships, and their applications in machine learning.",
+			tags: ["Mathematics", "Fundamentals", "ML Basics"],
+			path: "/blog/1/1"
+		}
+		// Add more sections here as you create them
+	];
+
+	// Group sections by parent topic
+	const groupedSections = blogSections.reduce((acc, section) => {
+		const parent = section.parentId;
+		if (!acc[parent]) {
+			acc[parent] = {
+				id: parent,
+				title: getParentTitle(parent),
+				sections: []
+			};
+		}
+		acc[parent].sections.push(section);
+		return acc;
+	}, {} as Record<string, { id: string, title: string, sections: typeof blogSections }>);
+
+	function getParentTitle(parentId: string): string {
+		const titles: Record<string, string> = {
+			"1": "Mathematical Foundations"
+			// Add more parent titles as needed
+		};
+		return titles[parentId] || `Topic ${parentId}`;
+	}
+
+	const images = [beforelearning, whilelearning, afterlearning, learnermonke];
+
+	let sidebarWidth = 20;
+	let isResizing = false;
+
+	function handleMouseDown() {
+		isResizing = true;
+	}
+
+	function handleMouseUp() {
+		isResizing = false;
+	}
+
+	function handleMouseMove(e: MouseEvent) {
+		if (!isResizing) return;
+
+		const newWidth = (e.clientX / window.innerWidth) * 100;
+		if (newWidth > 10 && newWidth < 50) {
+			sidebarWidth = newWidth;
+		}
+	}
+
+	const link = [
+		{
+			id: "monke-1",
+			content: monke1Html,
+		},
+		{
+			id: "ml-1",
+			content: ml1Html,
+		},
+		{
+			id: "ai-slop",
+			content: ai_slop,
+		},
+	];
+
+	let activeSidebarContent = "";
+
+	function handleSpanClick(event: MouseEvent) {
+		const target = event.target as HTMLElement;
+		const clickedId = target.id;
+
+		const matchedLink = link.find((item) => item.id === clickedId);
+		if (matchedLink && matchedLink.content) {
+			activeSidebarContent = matchedLink.content;
+		}
+	}
+
+	onMount(() => {
+		const track = document.querySelector(".carousel-track") as HTMLElement;
+		if (!track) return;
+
+		const halfWidth = track.scrollWidth / 2;
+		track.style.setProperty("--track-width", `${halfWidth}px`);
+
+		// Add click listeners to all spans with IDs from the link array
+		link.forEach((item) => {
+			const element = document.getElementById(item.id);
+			if (element) {
+				element.addEventListener("click", handleSpanClick);
+				element.style.cursor = "pointer";
+			}
+		});
+
+		return () => {
+			// Cleanup listeners
+			link.forEach((item) => {
+				const element = document.getElementById(item.id);
+				if (element) {
+					element.removeEventListener("click", handleSpanClick);
+				}
+			});
+		};
+	});
+
+	onMount(() => {
+		if (
+			!document.querySelector('script[src="https://tenor.com/embed.js"]')
+		) {
+			const script = document.createElement("script");
+			script.src = "https://tenor.com/embed.js";
+			script.async = true;
+			document.body.appendChild(script);
+		}
+	});
+
+	//contentData will be dynamically fetched with click of each section.
+	const contentData = {
+		grandparentId: "1",
+		parentId: "1.1",
+		id: "1.1.1",
+		title: "What are functions?",
+		sectionContent: [
+			{
+				content:
+					"Functions are basically machines that take an input & give out an output. Simple.",
+				image: "https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUycWx0MDZmdmVjcXJwcDduZHJ5ajd0ZDE4NmI2dXE2NWNqdWF1ODltMiZlcD12MV92aWRlb3Nfc2VhcmNoJmN0PXY/tdDByjqJsARvQvCPqq/giphy_s.gif",
+				imageAlt: "monke memes",
+				imageClass: "w-64",
+			},
+			{
+				content:
+					"Each numerical input must produce some numerical output, which must be unique to that input.",
+			},
+		],
+	};
+
+	const contentData2 = {
+		grandparentId: "1",
+		parentId: "1.1",
+		id: "1.1.2",
+		title: "(Scenario): Banan & Banker Monke",
+		sectionContent: [
+			{
+				content:
+					"Mr. Banker Monke returns coins for each banan that they get! <br/> A question that you must ask as a regular monke. <br/>“How many coins will I get for each banan?",
+			},
+			{
+				content: "THIS is called a relationship of a function.",
+			},
+			{
+				content:
+					"Treating Mr. Banker Monke as a function, the relationship between number of banans & number of coins  gives us a relationship between the two!",
+			},
+			{
+				content:
+					"A few terminologies here are:<ul><li>Domain: a set of your inputs (for ex: 1 banan, 2 banan, 3 banan, …)</li><li>Range: a set of outputs (for ex: 1 coin, 2 coin, 3 coin, etc…)</li><li>Co-Domain: a set of **ALL outputs** (for ex: number of coins more than what Mr. Banker Monke has)</li></ul>",
+			},
+			{
+				type: "formula",
+				formula: "f(x) = y",
+				content:
+					"Here, f is the function that takes an input x & gives an output y.",
+			},
+			{
+				content:
+					"A function must have a one-one OR many-one relationship, not one-many relationship. <br/>Each input must return a single, unique output. No multiple outputs for each input.",
+			},
+		],
+	};
+
+	const contentData3 = {
+		grandparentId: "1",
+		parentId: "1.1",
+		id: "1.1.3",
+		title: "Algebra of Functions",
+		sectionContent: [
+			{
+				content:
+					"Functions can be added, subtracted and manipulated upon. This forms the basis of how you define series of functions being acted upon an input in machine learning and deep learning algorithms.",
+			},
+			{
+				content:
+					"For ex:<ul><li>an output of a neural network is nothing but a huuuuuuge composition function, acted upon by many non-linear learnt functions to give a final value.</li><li>sharpening of an image is nothing but applying composition functions on an image to blur and sharpen the image, but more about image manipulation later…</li></ul>",
+			},
+		],
+	};
+
+	const contentData4 = {
+		grandparentId: "1",
+		parentId: "1.1",
+		id: "1.1.4",
+		title: "Linear v/s Non-linear functions",
+		sectionContent: [
+			{
+				content:
+					'<strong>Linear Functions</strong><ul><li>literally, relationships that are basically straight lines</li><li>one or two variables and constants</li><li>if y = f(x) is linear, we say "y varies linearly with x", meaning when plotted, they form a straight line!</li><li>y = mx + c (generally, for 2 variables)</li><li>increase or decrease in x ⇒ scaled by constant amount as change in y</li></ul>',
+			},
+			{
+				content:
+					"<strong>Non-linear Functions</strong><ul><li>relationships that are not, basically, straight lines. duh.</li><li>trignometric (sin, cos, tan, …), exponential, logarithmic. look at their graphs.</li><li>change in x ⇒ not scaled by a constant amount as change in y</li></ul>",
+			},
+		],
+	};
+
+	const contentData5 = {
+		grandparentId: "1",
+		parentId: "1.1",
+		id: "1.1.5",
+		title: "Why non-linear functions?",
+		sectionContent: [
+			{
+				content:
+					"Non-linear functions can help us model rather unpredictable or seasonal kinda repetitive patterns.",
+			},
+			{
+				content:
+					"Linear relationships are simple. If either x increases, y increases or decreases, <strong>linearly.</strong>",
+			},
+			{
+				content:
+					"But, most of the real-life relationships are <strong>NEVER</strong> linear. There is always some sort of noise, degree of randomness in IRL relationships.",
+			},
+			{
+				content:
+					"For ex:<ul><li>monke's hunger v/s time: monke might not always be hungry, but it will be only during specific durations of the day, some sorta sin/cos wave.</li><li>population of rabbits: increases exponentially!</li><li>moore's law!</li></ul>",
+			},
+			{
+				content:
+					"Hence, we can safely say that non-linear functions are awesome! They help us a model real-life use cases.",
+			},
+		],
+	};
+
+	const contentData6 = {
+		grandparentId: "1",
+		parentId: "1.1",
+		sectionContent: [
+			{
+				type: "toremember",
+				content: [
+					"Non-linear functions help us model real-life practical use cases!",
+					"Finding a way to model such relationships can help us predict real-life scenarios.",
+					"For ex: by developing a non-linear model of how banans sell on the MonkeMarket, Mr. Monke can predict what the next price of banans can be!",
+					"And hence, we want to develop machine learning algorithms that help in the creation of these non-linear relationships ⇒ to help us predict real life use-cases and scenarios better!",
+				],
+			},
+		],
+	};
+</script>
+
+<svelte:window on:mousemove={handleMouseMove} on:mouseup={handleMouseUp} />
+
+<main class="h-screen flex flex-col overflow-hidden">
+	<Header />
+
+	<div class="flex-1 flex flex-row overflow-hidden">
+		<div
+			style="width: {sidebarWidth}%"
+			class="h-full p-3 select-none overflow-y-auto"
+		>
+			{#if activeSidebarContent}
+				{@html activeSidebarContent}
+			{:else}
+				<p class="text-gray-500">
+					Click on highlighted text to see content here
+				</p>
+			{/if}
+		</div>
+
+		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+		<div
+			class="w-1 bg-gray-500 hover:bg-gray-400 cursor-col-resize transition-colors"
+			on:mousedown={handleMouseDown}
+			role="separator"
+			aria-label="Resize sidebar"
+		></div>
+
+		<div
+			id="main-content"
+			style="width: {100 - sidebarWidth}%"
+			class="overflow-y-auto overflow-x-hidden flex flex-col gap-15 items-center px-4"
+		>
+			<div class="flex flex-col w-full gap-5 justify-center items-center my-5">
+				<h1 class="text-4xl">parent title</h1>
+				<img
+					class="w-1/4"
+					src="/src/lib/assets/div.svg"
+					alt="divider"
+				/>
+				<BlogContentCard
+					count={contentData.id}
+					sectionTitle={contentData.title}
+					items={contentData.sectionContent}
+					className="w-full"
+				>
+					<svelte:fragment slot="item" let:item let:index>
+						{#if item.type === "formula"}
+							<Formula formula={item.formula} />
+							{#if item.content}
+								<br />
+								{item.content}
+							{/if}
+						{:else if item.type === "quote"}
+							<Quote
+								quote={item.quote}
+								pText={item.pText}
+								sText={item.sText}
+							/>
+						{:else if item.type === "toremember"}
+							<ToRemember content={item.content} />
+						{:else}
+							{@html item.content}
+						{/if}
+					</svelte:fragment>
+				</BlogContentCard>
+				<BlogContentCard
+					count={contentData2.id}
+					sectionTitle={contentData2.title}
+					items={contentData2.sectionContent}
+					className="w-full"
+				>
+					<svelte:fragment slot="item" let:item let:index>
+						{#if item.type === "formula"}
+							<Formula formula={item.formula} />
+							{#if item.content}
+								<br />
+								{item.content}
+							{/if}
+						{:else if item.type === "quote"}
+							<Quote
+								quote={item.quote}
+								pText={item.pText}
+								sText={item.sText}
+							/>
+						{:else if item.type === "toremember"}
+							<ToRemember content={item.content} />
+						{:else}
+							{@html item.content}
+						{/if}
+					</svelte:fragment>
+				</BlogContentCard>
+				<BlogContentCard
+					count={contentData3.id}
+					sectionTitle={contentData3.title}
+					items={contentData3.sectionContent}
+					className="w-full"
+				>
+					<svelte:fragment slot="item" let:item let:index>
+						{#if item.type === "formula"}
+							<Formula formula={item.formula} />
+							{#if item.content}
+								<br />
+								{item.content}
+							{/if}
+						{:else if item.type === "quote"}
+							<Quote
+								quote={item.quote}
+								pText={item.pText}
+								sText={item.sText}
+							/>
+						{:else if item.type === "toremember"}
+							<ToRemember content={item.content} />
+						{:else}
+							{@html item.content}
+						{/if}
+					</svelte:fragment>
+				</BlogContentCard>
+				<BlogContentCard
+					count={contentData4.id}
+					sectionTitle={contentData4.title}
+					items={contentData4.sectionContent}
+					className="w-full"
+				>
+					<svelte:fragment slot="item" let:item let:index>
+						{#if item.type === "formula"}
+							<Formula formula={item.formula} />
+							{#if item.content}
+								<br />
+								{item.content}
+							{/if}
+						{:else if item.type === "quote"}
+							<Quote
+								quote={item.quote}
+								pText={item.pText}
+								sText={item.sText}
+							/>
+						{:else if item.type === "toremember"}
+							<ToRemember content={item.content} />
+						{:else}
+							{@html item.content}
+						{/if}
+					</svelte:fragment>
+				</BlogContentCard>
+				<BlogContentCard
+					count={contentData5.id}
+					sectionTitle={contentData5.title}
+					items={contentData5.sectionContent}
+					className="w-full"
+				>
+					<svelte:fragment slot="item" let:item let:index>
+						{#if item.type === "formula"}
+							<Formula formula={item.formula} />
+							{#if item.content}
+								<br />
+								{item.content}
+							{/if}
+						{:else if item.type === "quote"}
+							<Quote
+								quote={item.quote}
+								pText={item.pText}
+								sText={item.sText}
+							/>
+						{:else if item.type === "toremember"}
+							<ToRemember content={item.content} />
+						{:else}
+							{@html item.content}
+						{/if}
+					</svelte:fragment>
+				</BlogContentCard>
+				<BlogContentCard
+					count={contentData6.id}
+					sectionTitle={contentData6.title}
+					items={contentData6.sectionContent}
+					className="w-full"
+				>
+					<svelte:fragment slot="item" let:item let:index>
+						{#if item.type === "formula"}
+							<Formula formula={item.formula} />
+							{#if item.content}
+								<br />
+								{item.content}
+							{/if}
+						{:else if item.type === "quote"}
+							<Quote
+								quote={item.quote}
+								pText={item.pText}
+								sText={item.sText}
+							/>
+						{:else if item.type === "toremember"}
+							<ToRemember content={item.content} />
+						{:else}
+							{@html item.content}
+						{/if}
+					</svelte:fragment>
+				</BlogContentCard>
+			</div>
+		</div>
+	</div>
+
+	<Footer />
+</main>
+
+<style>
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-1 * var(--track-width)));
+		}
+	}
+
+	:global(.carousel-img-class) {
+		width: 300px;
+		height: 300px;
+		flex-shrink: 0;
+		object-fit: cover;
+	}
+</style>

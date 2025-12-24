@@ -20,7 +20,7 @@
 </script>
 
 <div
-    class="glow-card flex flex-col gap-1 w-1/2 p-3 bg-orange-400 border-l-8 border-orange-600"
+    class="glow-card flex flex-col gap-1 w-full p-3 bg-orange-400 border-l-8 border-orange-600"
 >
     <div class="flex flex-col gap-1 items-center justify-center">
         <div class="flex flex-row gap-2 items-center justify-center">

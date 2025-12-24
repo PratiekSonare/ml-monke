@@ -133,7 +133,7 @@
 					{/if}
 					{#if item.image}
 						<img
-							class="mx-auto rounded-2xl img-border mt-3 {item.imageClass ||
+							class="mx-auto img-border mt-3 {item.imageClass ||
 								''}"
 							alt={item.imageAlt || ""}
 							src={item.image}
@@ -156,7 +156,6 @@
 		background-size: 200% 100%;
 		background-position: right center;
 		padding: 1rem;
-		border-radius: 0.5rem;
 	}
 
 	.animated-item:hover,

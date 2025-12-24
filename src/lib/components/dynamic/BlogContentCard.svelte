@@ -2,15 +2,23 @@
     import { onMount } from "svelte";
     import Counter from "./Counter.svelte";
 
-    export let count: number = 1;
-    export let title: string = "";
+    export let count: string = "1";
+    export let sectionTitle: string = "";
 
     interface AnimationItem {
-        content: any;
+        content?: any;
         image?: string;
         imageAlt?: string;
         imageClass?: string;
+        bigImage?: string;
+        bigImageClass?: string;
+        bigImageAlt?: string;
         note?: string;
+        type?: 'formula' | 'quote' | 'toremember';
+        formula?: string;
+        quote?: string;
+        pText?: string;
+        sText?: string;
     }
 
     export let items: AnimationItem[] = [];
@@ -81,47 +89,62 @@
             }
         });
     }
+
+    // Check if all items are special types that don't need counter
+    $: hideCounter = items.every(
+        (item) =>
+            item.type === "toremember" ||
+            item.type === "quote" ||
+            item.type === "formula",
+    );
 </script>
 
-<div class="flex flex-col gap-15 {className}">
+<div class="flex flex-col gap-0 {className}">
     <div
-        class="flex flex-row items-center justify-center gap-3 {isPlaying
+        class="flex flex-row justify-between gap-5 {isPlaying
             ? 'sticky top-0 z-10 bg-transparent py-2'
             : ''}"
     >
-        <Counter {count} />
-        <button
-            on:click={isPlaying ? resetAnimation : playAnimation}
-            class="scale-75 play-button rounded-full border-4 border-blue-500 w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-gray-100 active:scale-95 transition-all duration-300"
-            aria-label={isPlaying ? "Stop animation" : "Play animation"}
-        >
-            {#if isPlaying}
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="#3b82f6"
+        {#if !hideCounter}
+            <div class="flex items-start gap-3">
+                <Counter {count} />
+                {#if sectionTitle}
+                    <div class="text-2xl bFont underline underline-offset-8">
+                        {sectionTitle}
+                    </div>
+                {/if}
+
+                <button
+                    on:click={isPlaying ? resetAnimation : playAnimation}
+                    class="scale-75 play-button rounded-full border-4 border-blue-500 w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-gray-100 active:scale-95 transition-all duration-300"
+                    aria-label={isPlaying ? "Stop animation" : "Play animation"}
                 >
-                    <rect x="6" y="4" width="4" height="16" />
-                    <rect x="14" y="4" width="4" height="16" />
-                </svg>
-            {:else}
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5 ml-0.5"
-                    viewBox="0 0 24 24"
-                    fill="#3b82f6"
-                >
-                    <polygon points="5,3 19,12 5,21" />
-                </svg>
-            {/if}
-        </button>
+                    {#if isPlaying}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="#3b82f6"
+                        >
+                            <rect x="6" y="4" width="4" height="16" />
+                            <rect x="14" y="4" width="4" height="16" />
+                        </svg>
+                    {:else}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 ml-0.5"
+                            viewBox="0 0 24 24"
+                            fill="#3b82f6"
+                        >
+                            <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                    {/if}
+                </button>
+            </div>
+        {/if}
     </div>
 
-    <div bind:this={containerEl} class="text-center px-3 w-full">
-        {#if title}
-            <div class="text-3xl bFont">{title}</div>
-        {/if}
+    <div bind:this={containerEl} class="text-left px-3 w-full">
         <div class="self-center text-lg">
             {#each items as item, i}
                 <div
@@ -157,7 +180,7 @@
                                         class="rounded-full w-1 h-1 bg-gray-300 mx-auto my-5"
                                     ></div>
                                     <img
-                                        class="mx-auto rounded-2xl img-border mt-3 {item.imageClass ||
+                                        class="mx-auto img-border {item.imageClass ||
                                             ''}"
                                         alt={item.imageAlt || ""}
                                         src={item.image}
@@ -167,6 +190,7 @@
                         {/if}
                     </div>
                 </div>
+
                 {#if i < items.length - 1}
                     <div
                         class="rounded-full w-8 h-1 bg-gray-300 mx-auto my-5"
@@ -189,7 +213,6 @@
         background-size: 200% 100%;
         background-position: right center;
         padding: 1rem;
-        border-radius: 0.5rem;
     }
 
     .animated-item:hover,

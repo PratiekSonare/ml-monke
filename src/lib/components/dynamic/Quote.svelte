@@ -5,7 +5,7 @@
 </script>
 
     <div
-        class="flex flex-col gap-1 w-1/2 p-3 bg-green-400 border-l-8 border-green-600"
+        class="flex flex-col gap-1 w-full p-3 bg-green-400 border-l-8 border-green-600"
     >
         <div class="mb-1 flex flex-row gap-2 items-center justify-center">
             <svg

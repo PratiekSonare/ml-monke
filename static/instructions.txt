@@ -1,0 +1,5 @@
+1. Need you to convert .md files into .svelte of a desired format.
+2. Need you to style items according to <BlogContentCard /> component.
+3. Consider # tagged as the title.
+4. Consider ## tagged as section id.
+5. Consider ### tagged as section title.
