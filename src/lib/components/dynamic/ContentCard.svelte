@@ -22,17 +22,45 @@
 	let containerEl: HTMLElement;
 	let itemEls: HTMLElement[] = [];
 	let shouldStop = false;
+	let isFocused = false;
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.ctrlKey && event.key === 'Enter' && isFocused) {
+			event.preventDefault();
+			// Manual step-through mode
+			nextCell();
+		}
+	}
+
+	function nextCell() {
+		// Stop any running animation
+		if (isPlaying) {
+			resetAnimation();
+		}
+		
+		// Move to next cell
+		currentIndex = (currentIndex + 1) % items.length;
+		
+		// Scroll to the current item
+		if (itemEls[currentIndex]) {
+			itemEls[currentIndex].scrollIntoView({
+				behavior: "smooth",
+				block: "center",
+			});
+		}
+	}
+
+	onMount(() => {
+		window.addEventListener('keydown', handleKeydown);
+		return () => {
+			window.removeEventListener('keydown', handleKeydown);
+		};
+	});
 
 	async function playAnimation() {
 		if (isPlaying) return;
 		isPlaying = true;
 		shouldStop = false;
-		currentIndex = -1;
-
-		// Reset all items to dimmed state
-		itemEls.forEach((el) => {
-			if (el) el.style.opacity = "0.3";
-		});
 
 		for (let i = 0; i < items.length; i++) {
 			// Check if we should stop the animation
@@ -47,9 +75,8 @@
 					block: "center",
 				});
 
-				// Animate opacity and background
-				itemEls[i].style.opacity = "1";
-				itemEls[i].style.transition = `opacity ${Number(duration.replace("s", ""))/10}s ease-in-out, background-position ${duration} ease-in-out`;
+				// Animate background
+				itemEls[i].style.transition = `background-position ${duration} ease-in-out`;
 				itemEls[i].style.backgroundPosition = "left center";
 			}
 
@@ -62,7 +89,6 @@
 			resetAnimation();
 		} else {
 			isPlaying = false;
-			currentIndex = -1;
 		}
 	}
 
@@ -72,7 +98,6 @@
 		currentIndex = -1;
 		itemEls.forEach((el) => {
 			if (el) {
-				el.style.opacity = "";
 				el.style.transition = "";
 				el.style.backgroundPosition = "";
 			}
@@ -80,9 +105,20 @@
 	}
 </script>
 
-<div class="flex flex-col gap-15 {className}">
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div 
+	class="flex flex-col gap-15 {className}"
+	on:mouseenter={() => isFocused = true}
+	on:mouseleave={() => isFocused = false}
+	tabindex="-1"
+>
 	<div class="flex flex-row items-center justify-center gap-3 {isPlaying ? 'sticky top-0 z-10 bg-transparent py-2' : ''}">
 		<Counter {count} />
+		<div class="flex items-center gap-2 text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded border border-gray-300 {isFocused ? 'opacity-100' : 'opacity-30'}">
+			<kbd class="font-mono font-semibold">Ctrl</kbd>
+			<span>+</span>
+			<kbd class="font-mono font-semibold">Enter</kbd>
+		</div>
 		<button
 			on:click={isPlaying ? resetAnimation : playAnimation}
 			class="scale-75 play-button rounded-full border-4 border-blue-500 w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-gray-100 active:scale-95 transition-all duration-300"
@@ -121,6 +157,7 @@
 					bind:this={itemEls[i]}
 					class="animated-item"
 					class:active={currentIndex === i}
+					class:manual-active={currentIndex === i && !isPlaying}
 					class:mt-5={i === 0}
 					class:mb-5={i === items.length - 1}
 				>
@@ -147,20 +184,19 @@
 		</div>
 	</div>
 </div>
-
 <style>
 	.animated-item {
-		opacity: 50%;
-		transition: opacity 0.3s ease-in-out;
+		opacity: 100%;
+		transition: border 0.3s ease-in-out;
 		background: linear-gradient(to left, rgba(59, 130, 246, 0.05) 50%, rgba(59, 130, 246, 0.1) 50%);
 		background-size: 200% 100%;
 		background-position: right center;
 		padding: 1rem;
+		border: 2px solid transparent;
 	}
 
-	.animated-item:hover,
-	.animated-item.active {
-		opacity: 100%;
+	.animated-item.manual-active {
+		border: 2px solid #1e40af;
 	}
 
 	.play-button:hover {

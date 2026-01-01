@@ -15,9 +15,10 @@
             {/if}
         {/each}
     </div>
-
+    
     <div class="flex flex-row justify-between items-start gap-5 w-full px-4">
         <ContentCard count={1} title="The idea:" items={leftContent} className="flex-1" />
+        <!-- <div class="h-1/2 w-px bg-gray-400 my-auto"></div> -->
         <ContentCard count={2} title="I follow:" items={rightContent} className="flex-1" />
     </div>
 </div>

@@ -37,7 +37,7 @@ export const content_1_1: BlogPageData = {
 				{
 					content:
 						"Functions are basically machines that take an input & give out an output. Simple.",
-					image: "https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUycWx0MDZmdmVjcXJwcDduZHJ5ajd0ZDE4NmI2dXE2NWNqdWF1ODltMiZlcD12MV92aWRlb3Nfc2VhcmNoJmN0PXY/tdDByjqJsARvQvCPqq/giphy_s.gif",
+					image: "https://media.geeksforgeeks.org/wp-content/uploads/20240509174104/Function-in-Maths.webp",
 					imageAlt: "monke memes",
 					imageClass: "w-64",
 				},

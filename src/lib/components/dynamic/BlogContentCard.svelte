@@ -4,6 +4,7 @@
 
     export let count: string = "1";
     export let sectionTitle: string = "";
+    export let sectionId: string = "";
 
     interface AnimationItem {
         content?: any;
@@ -99,7 +100,7 @@
     );
 </script>
 
-<div class="flex flex-col gap-0 {className}">
+<div class="flex flex-col gap-0 {className}" id={sectionId}>
     <div
         class="flex flex-row justify-between gap-5 {isPlaying
             ? 'sticky top-0 z-10 bg-transparent py-2'

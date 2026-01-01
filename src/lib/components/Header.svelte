@@ -27,8 +27,8 @@
     {/if}
     <div class="flex flex-row items-center justify-center pl-24">
         <div class="flex flex-col">
-            <h1 class="text-2xl bFont">
-                Machine Learning<span class="lFont mx-2">by</span><span class="text-orange-600 underline">Monke</span>
+            <h1 class="text-2xl">
+                machine learning<span class="lFont mx-2">by</span><span class="text-orange-600 underline">Monke</span>
             </h1>
             <p class="text-sm">
                 monke will teach you <span class="italic underline"
@@ -40,31 +40,31 @@
 
     <div class="flex flex-row gap-2 text-xs">
         <button
-            class="text-xs min-w-18 p-2 py-2 bg-purple-400 border-4 border-purple-600 text-white hover:text-black"
+            class="text-xs min-w-18 p-2 py-2 bg-purple-500 shadow-col text-white hover:text-black"
         >
-            About
+            about
         </button>
 
         <button
-            class="text-xs min-w-18 p-2 bg-pink-400 border-4 border-pink-600 text-white hover:text-black"
+            class="text-xs min-w-18 p-2 bg-pink-500 shadow-col text-white hover:text-black"
         >
-            Syllabus
+            syllabus
         </button>
 
         <button
-            class="text-xs min-w-18 p-2 bg-orange-400 border-4 border-orange-600 text-white hover:text-black"
+            class="text-xs min-w-18 p-2 bg-orange-500 shadow-col text-white hover:text-black"
         >
-            Resources
+            resources
         </button>
 
         <button
-            class="text-xs min-w-18 p-2 bg-green-400 border-4 border-green-600 text-white hover:text-black"
+            class="text-xs min-w-18 p-2 bg-green-500 shadow-col text-white hover:text-black"
         >
-            Contest
+            contest
         </button>
 
         <div
-            class="flex flex-row items-center justify-start py-1 gap-1 bg-blue-400 border-4 border-blue-600 text-white"
+            class="flex flex-row items-center justify-start py-1 gap-1 bg-blue-500 shadow-col text-white"
         >
             <svg
                 class="ml-2 mb-px w-4 h-4"
@@ -80,7 +80,7 @@
                         fill-rule="evenodd"
                         clip-rule="evenodd"
                         d="M17.0392 15.6244C18.2714 14.084 19.0082 12.1301 19.0082 10.0041C19.0082 5.03127 14.9769 1 10.0041 1C5.03127 1 1 5.03127 1 10.0041C1 14.9769 5.03127 19.0082 10.0041 19.0082C12.1301 19.0082 14.084 18.2714 15.6244 17.0392L21.2921 22.707C21.6828 23.0977 22.3163 23.0977 22.707 22.707C23.0977 22.3163 23.0977 21.6828 22.707 21.2921L17.0392 15.6244ZM10.0041 17.0173C6.1308 17.0173 2.99087 13.8774 2.99087 10.0041C2.99087 6.1308 6.1308 2.99087 10.0041 2.99087C13.8774 2.99087 17.0173 6.1308 17.0173 10.0041C17.0173 13.8774 13.8774 17.0173 10.0041 17.0173Z"
-                        fill="#1555E5"
+                        fill="#FFF"
                     ></path>
                 </g></svg
             >
@@ -88,3 +88,21 @@
         </div>
     </div>
 </div>
+
+<style>
+    .shadow-col {
+        border: 2px solid black;
+        box-shadow: rgba(0, 0, 0, 1) 3px 3px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        scale: 100%;
+    }
+
+    .shadow-col:hover {
+        box-shadow: rgba(0, 0, 0, 1) 4px 4px;
+    }
+
+    .shadow-col:active {
+        scale: 95%;
+    }
+</style>

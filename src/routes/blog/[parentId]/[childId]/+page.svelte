@@ -92,15 +92,26 @@
 			script.async = true;
 			document.body.appendChild(script);
 		}
+
+		// Handle scroll to section if hash is present
+		const hash = window.location.hash.slice(1);
+		if (hash) {
+			setTimeout(() => {
+				const element = document.getElementById(hash);
+				if (element) {
+					element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
+			}, 100);
+		}
 	});
 </script>
 
 <svelte:window on:mousemove={handleMouseMove} on:mouseup={handleMouseUp} />
 
-<main class="h-screen flex flex-col overflow-hidden">
+<main class="h-screen">
 	<Header />
 
-	<div class="flex-1 flex flex-row overflow-hidden">
+	<div class="flex-1 flex flex-row overflow-hidden min-h-0">
 		<div
 			style="width: {sidebarWidth}%"
 			class="h-full p-3 select-none overflow-y-auto"
@@ -141,6 +152,7 @@
 						sectionTitle={section.title}
 						items={section.sectionContent}
 						className="w-full"
+						sectionId={section.id}
 					>
 						<svelte:fragment slot="item" let:item let:index>
 							{#if item.type === "formula" && item.formula}
@@ -167,7 +179,7 @@
 		</div>
 	</div>
 
-	<Footer />
+	<Footer /> 
 </main>
 
 <style>

@@ -4,7 +4,7 @@
 </script>
 
 <div
-    class="flex flex-col gap-1 w-full p-3 bg-purple-400 border-8 border-purple-600"
+    class="flex flex-col gap-1 w-full p-3 bg-purple-500 shadow-col-black"
 >
     <div class="mb-1 flex flex-row gap-2 items-center justify-center">
         <svg class="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +43,19 @@
         {title}
     </p>
     {#each content as item}
-        <span class="text-lg italic -mb-1"> • {item}</span>
+        <span class="italic -mb-1"> • {item}</span>
     {/each}
 </div>
+
+
+<style>
+    .shadow-col {
+        border: 4px solid #6E18AF;
+        box-shadow: #6E18AF 4px 4px;
+    }
+
+    .shadow-col-black {
+        border: 4px solid black;
+        box-shadow: black 4px 4px;
+    }
+</style>

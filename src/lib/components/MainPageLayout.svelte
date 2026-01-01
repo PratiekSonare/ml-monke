@@ -16,11 +16,21 @@
 	import { onMount } from "svelte";
 	import MasterContentCard from "./dynamic/MasterContentCard.svelte";
 	import Syllabus from "./Syllabus.svelte";
+	import { fly } from "svelte/transition";
+	import { syllabus_1 } from "../data/syllabus1";
+	import { syllabus_2 } from "../data/syllabus2";
+	import { syllabus_3 } from "../data/syllabus3";
+	import { syllabus_4 } from "../data/syllabus4";
 
 	const images = [beforelearning, whilelearning, afterlearning, learnermonke];
 
 	let sidebarWidth = 20;
 	let isResizing = false;
+	let showTitle = false;
+
+	onMount(() => {
+		showTitle = true;
+	});
 
 	function handleMouseDown() {
 		isResizing = true;
@@ -107,16 +117,16 @@
 	const content1 = [
 		{
 			content:
-				'We\'ll discuss the <span class="text-3xl bFont">logic</span>, intuition and the <span class="text-3xl bFont">mathematics</span> behind each step of machine learning paradigms to properly understand each and every concept.',
+				'We\'ll discuss the <span class="imp-text">logic</span>, intuition and the <span class="imp-text">mathematics</span> behind each step of machine learning paradigms to properly understand each and every concept.',
 		},
 		{
 			content:
-				'Usual ML courses are full of unnecessary jargon. Let us get <span class="text-3xl bFont">rid</span> of that.',
+				'Usual ML courses are full of unnecessary jargon. Let us get <span class="imp-text">rid</span> of that.',
 			note: "researches after writing 200+ words of nothing",
 		},
 		{
 			content:
-				'Blogs? Too much text, more procrastination.<br/>Videos? I zone out easily.<br/>Hence, trying to make learning more <span class="text-3xl bFont">visually appealing!</span>',
+				'Blogs? Too much text, more procrastination.<br/>Videos? I zone out easily.<br/>Hence, trying to make learning more <span class="imp-text">visually appealing!</span>',
 		},
 		{
 			content: "Monke loves memes. Try learning with memes :3",
@@ -138,14 +148,14 @@
 	const content2 = [
 		{
 			content:
-				'◦ less words, more learning. THIS IS <span class="text-3xl bFont">NOT</span> AN ACADEMIC TEXTBOOK.',
+				'◦ less words, more learning. THIS IS <span class="imp-text">NOT</span> AN ACADEMIC TEXTBOOK.',
 			note: "[note: no academic paper has dancing monke gifs.]",
 			image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTER0tuZtB_opN6Lr9DxgL_lQbVUd8mX3381A&s",
 			imageAlt: "few words",
 		},
 		{
 			content:
-				'◦ i <span class="text-3xl bFont">hate</span> <span id="ai-slop" class="monkeText">AI slop</span>. everything is written using this Monke brain.',
+				'◦ i <span class="imp-text">hate</span> <span id="ai-slop" class="monkeText">AI slop</span>. everything is written using this Monke brain.',
 			image: "https://i.pinimg.com/736x/68/07/b0/6807b07a68d7aa045e2bfeebedee7d7d.jpg",
 			imageAlt: "big bwain",
 			imageClass: "w-64",
@@ -163,162 +173,11 @@
 		},
 		{
 			content:
-				'◦ learning must be fun. <span class="text-3xl bFont">have fun</span>, hoo hoo hoo! :3',
+				'◦ learning must be fun. <span class="imp-text">have fun</span>, hoo hoo hoo! :3',
 			note: "don't shy away from exploring the additional resources provided by me - the most learned monke.",
 		},
 	];
-
-	const syllabus_1 = [
-		{
-			id: 1,
-			title: "Basic Mathematics",
-			subtitle: "Linear Algebra + Probability + Calculus",
-			bgColor: "bg-blue-50",
-			borderColor: "border-blue-500",
-			sections: [
-				{
-					id: "1.1",
-					title: "Functions",
-					subtitle: "",
-					items: [
-						"1.1.1 Linear v/s Non-linear",
-						"1.1.2 What are models output?",
-						"1.1.3 Activation Functions: Need, Purpose",
-					],
-				},
-				{
-					id: "1.2",
-					title: "Scalars, Vectors & Matrices",
-					items: [
-						"1.2.1 Cross Product, Dot Product",
-						"1.2.2 Identity Matrices",
-						"1.2.3 Eigenvalues & Eigenfunctions (PCA)",
-						"1.2.4 Weight + Biases matrices",
-					],
-				},
-				{
-					id: "1.3",
-					title: "Differentiation",
-					items: ["1.3.1 Diff", "1.3.2 Loss Functions & BP in short"],
-				},
-				{
-					id: "1.4",
-					title: "Probability & Stats",
-					items: [
-						"1.4.1 Random Variables",
-						"1.4.2 Distributions",
-						"1.4.3 Conditional Prob & Bayes Theorem",
-						"1.4.4 Mean, Var, Std. for discrete and cont samples",
-					],
-				},
-			],
-		},
-	];
-
-	const syllabus_2 = [
-		{
-			id: 2,
-			title: "Machine Learning",
-			subtitle: "huh.",
-			bgColor: "bg-purple-50",
-			borderColor: "border-purple-500",
-			sections: [
-				{
-					id: "2.1",
-					title: "Motivation",
-					items: ["2.1.1 Supervised v/s Unsupervised"],
-				},
-				{
-					id: "2.2",
-					title: "Model",
-					items: ["2.2.1 Training, Evaluation"],
-				},
-				{
-					id: "2.3",
-					title: "Data",
-					items: [
-						"2.3.1 What kind of data required",
-						"2.3.2 Augmentation techniques",
-						"2.3.3 Encoding",
-					],
-				},
-			],
-		},
-	];
-
-	const syllabus_3 = [
-		{
-			id: 3,
-			title: "Regression",
-			subtitle: "",
-			bgColor: "bg-orange-50",
-			borderColor: "border-orange-500",
-			sections: [
-				{
-					id: "3.1",
-					title: "Linear",
-					items: [],
-				},
-				{
-					id: "3.2",
-					title: "Quadratic",
-					items: [],
-				},
-				{
-					id: "3.3",
-					title: "Multivariable",
-					items: [],
-				},
-				{
-					id: "3.4",
-					title: "Logistic",
-					items: [],
-				},
-			],
-		},
-	];
-
-	const syllabus_4 = [
-		{
-			id: 4,
-			title: "Classification",
-			subtitle: "",
-			bgColor: "bg-green-50",
-			borderColor: "border-green-500",
-			sections: [
-				{
-					id: "4.1",
-					title: "Linear, Non-linear Classifiers",
-					items: [],
-				},
-				{
-					id: "4.2",
-					title: "SVMs, Hyperplanes, Linear Separability",
-					items: [],
-				},
-				{
-					id: "4.3",
-					title: "K-Nearest Neighbour",
-					items: [],
-				},
-				{
-					id: "4.4",
-					title: "Decision Trees, Entropy",
-					items: [],
-				},
-				{
-					id: "4.5",
-					title: "Ensemble Techniques, Random Forest, AdaBoost",
-					items: [],
-				},
-				{
-					id: "4.6",
-					title: "Perceptron, MLP basics",
-					items: [],
-				},
-			],
-		},
-	];
+	
 </script>
 
 <svelte:window on:mousemove={handleMouseMove} on:mouseup={handleMouseUp} />
@@ -351,60 +210,82 @@
 		class="overflow-y-auto overflow-x-hidden flex flex-col gap-2 items-center py-4"
 	>
 		<div
-			class="flex flex-row items-center justify-center w-full gap-5 px-4"
+			class="flex flex-col items-center justify-center w-full gap-5 px-4"
 		>
-			<div
-				class="tenor-gif-embed img-border justify-start overflow-hidden"
-				data-postid="13933823"
-				data-share-method="host"
-				data-aspect-ratio="1.455"
-				data-width="50%"
+			<h1
+				class="text-8xl strong whitespace-nowrap text-ellipsis"
+				in:fly={{ y: -50, duration: 500 }}
 			>
-				<a
-					href="https://tenor.com/view/monkey-typing-working-gif-13933823"
-					>Monkey Typing GIF</a
-				>from
-				<a href="https://tenor.com/search/monkey-gifs">Monkey GIFs</a>
-			</div>
-			<script
-				type="text/javascript"
-				async
-				src="https://tenor.com/embed.js"
-			></script>
+				Machine Learning<span class="lFont mx-5">by</span><span
+					class="text-orange-600 underline">Monke</span
+				>
+			</h1>
 
-			<div class="flex flex-col gap-1 w-full items-start text-left">
-				<h1 class="text-4xl mb-2">
-					This is <span id="monke-1" class="monkeText">Monke</span>!
-				</h1>
-				<p>
-					Monke teaches you
-					<span id="ml-1" class="mlText">machine learning</span>.
-				</p>
-				<p>Less words, more learning. Monke happy, you happy :3</p>
-			</div>
+			<div
+				class="flex flex-row justify-center items-center gap-5 w-full mt-15"
+			>
+				<div
+					class="tenor-gif-embed max-w-sm img-border justify-start overflow-hidden border-8 border-black"
+					data-postid="13933823"
+					data-share-method="host"
+					data-aspect-ratio="1.455"
+					data-width="50%"
+				>
+					<a
+						href="https://tenor.com/view/monkey-typing-working-gif-13933823"
+						>Monkey Typing GIF</a
+					>from
+					<a href="https://tenor.com/search/monkey-gifs"
+						>Monkey GIFs</a
+					>
+				</div>
+				<script
+					type="text/javascript"
+					async
+					src="https://tenor.com/embed.js"
+				></script>
 
-			<div class="scale-90 w-full">
-				<ToRemember
-					title="Pro Tip"
-					content={[
-						"Try clicking on the highlighted words throughout the blog.",
-						"Also try selecting a bunch of text and exploring the AI Explanation!",
-					]}
-				/>
+				<div class="flex flex-col items-start gap-3">
+					<div class="flex flex-col items-start">
+						<h1 class="text-4xl mb-2">
+							This is <span id="monke-1" class="monkeText"
+								>Monke</span
+							>!
+						</h1>
+						<p>
+							Monke teaches you
+							<span id="ml-1" class="mlText"
+								>machine learning</span
+							>.
+						</p>
+						<p>
+							Less words, more learning. Monke happy, you happy :3
+						</p>
+					</div>
+
+					<div class="scale-100 w-full">
+						<ToRemember
+							title="Pro Tip"
+							content={[
+								"Try clicking on the highlighted words throughout the blog.",
+								"Also try selecting a bunch of text and exploring the AI Explanation!",
+							]}
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<img
-			class="mx-auto my-5 w-1/4"
-			src="/src/lib/assets/div.svg"
-			alt="divider"
-		/>
-
 		<div
-			class="flex flex-col gap-5 justify-center items-center w-full px-8"
+			class="flex flex-col gap-0 justify-center items-center w-full px-8 mt-15"
 		>
-			<h1 class="text-4xl mb-4">Syllabus</h1>
+			<h1 class="relative text-4xl z-100">Content</h1>
 
+			<img
+				class="mx-auto -mb-4 w-1/4 z-100"
+				src="/src/lib/assets/div.svg"
+				alt="divider"
+			/>
 			<div class="flex flex-row gap-0">
 				<Syllabus syllabus={syllabus_1} />
 				<Syllabus syllabus={syllabus_2} />
@@ -413,8 +294,10 @@
 			</div>
 		</div>
 
+		<h1 class="relative text-4xl z-100">Uhh... memes?</h1>
+
 		<img
-			class="mx-auto my-5 w-1/4"
+			class="mx-auto w-1/4 z-100"
 			src="/src/lib/assets/div.svg"
 			alt="divider"
 		/>
@@ -428,13 +311,14 @@
 			</div>
 		</div>
 
-		<img
-			class="mx-auto my-5 w-1/4"
-			src="/src/lib/assets/div.svg"
-			alt="divider"
-		/>
-		<div class="flex flex-col gap-5 justify-center items-center">
-			<h1 class="text-4xl">Concept</h1>
+		<div class="flex flex-col gap-0 justify-center items-center mt-15">
+			<h1 class="relative text-4xl z-100">Concept</h1>
+			<img
+				class="mx-auto w-1/4 z-100"
+				src="/src/lib/assets/div.svg"
+				alt="divider"
+			/>
+			<div class="mb-5"></div>
 			<MasterContentCard
 				n={2}
 				leftContent={content1}
