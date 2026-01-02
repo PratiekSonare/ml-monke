@@ -21,6 +21,9 @@
 	import { syllabus_2 } from "../data/syllabus2";
 	import { syllabus_3 } from "../data/syllabus3";
 	import { syllabus_4 } from "../data/syllabus4";
+    import ContextPanel from "./dynamic/ContextPanel.svelte";
+    import Title from "./dynamic/Title.svelte";
+    import OpeningCard from "./dynamic/OpeningCard.svelte";
 
 	const images = [beforelearning, whilelearning, afterlearning, learnermonke];
 
@@ -75,6 +78,8 @@
 			activeSidebarContent = matchedLink.content;
 		}
 	}
+
+	let hoveredBg = "";
 
 	onMount(() => {
 		const track = document.querySelector(".carousel-track") as HTMLElement;
@@ -187,13 +192,17 @@
 		style="width: {sidebarWidth}%"
 		class="h-full p-3 select-none overflow-y-auto"
 	>
+
+		<!-- ContextPanel -->
+		<ContextPanel />
+<!-- 		
 		{#if activeSidebarContent}
 			{@html activeSidebarContent}
 		{:else}
 			<p class="text-gray-500">
 				Click on highlighted text to see content here
 			</p>
-		{/if}
+		{/if} -->
 	</div>
 
 	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -208,93 +217,30 @@
 		id="main-content"
 		style="width: {100 - sidebarWidth}%"
 		class="overflow-y-auto overflow-x-hidden flex flex-col gap-2 items-center py-4"
-	>
+	>	
+
+		<div class="relative w-full"><OpeningCard /></div>
+
 		<div
-			class="flex flex-col items-center justify-center w-full gap-5 px-4"
+			id="two"
+			class="flex flex-col gap-0 justify-center items-center w-full px-8 mt-15 relative"
 		>
-			<h1
-				class="text-8xl strong whitespace-nowrap text-ellipsis"
-				in:fly={{ y: -50, duration: 500 }}
-			>
-				Machine Learning<span class="lFont mx-5">by</span><span
-					class="text-orange-600 underline">Monke</span
-				>
-			</h1>
+			<!-- <div 
+				style="width: {(100 - sidebarWidth)/3}%"
+				class="absolute ml-8 top-0 left-0 h-full -z-10 bg-blue-400 opacity-50 transition-all duration-300">
+			</div> -->
 
-			<div
-				class="flex flex-row justify-center items-center gap-5 w-full mt-15"
-			>
-				<div
-					class="tenor-gif-embed max-w-sm img-border justify-start overflow-hidden border-8 border-black"
-					data-postid="13933823"
-					data-share-method="host"
-					data-aspect-ratio="1.455"
-					data-width="50%"
-				>
-					<a
-						href="https://tenor.com/view/monkey-typing-working-gif-13933823"
-						>Monkey Typing GIF</a
-					>from
-					<a href="https://tenor.com/search/monkey-gifs"
-						>Monkey GIFs</a
-					>
-				</div>
-				<script
-					type="text/javascript"
-					async
-					src="https://tenor.com/embed.js"
-				></script>
+			<h1 class="relative text-4xl z-100 self-start">What you'll learn...</h1>
 
-				<div class="flex flex-col items-start gap-3">
-					<div class="flex flex-col items-start">
-						<h1 class="text-4xl mb-2">
-							This is <span id="monke-1" class="monkeText"
-								>Monke</span
-							>!
-						</h1>
-						<p>
-							Monke teaches you
-							<span id="ml-1" class="mlText"
-								>machine learning</span
-							>.
-						</p>
-						<p>
-							Less words, more learning. Monke happy, you happy :3
-						</p>
-					</div>
-
-					<div class="scale-100 w-full">
-						<ToRemember
-							title="Pro Tip"
-							content={[
-								"Try clicking on the highlighted words throughout the blog.",
-								"Also try selecting a bunch of text and exploring the AI Explanation!",
-							]}
-						/>
-					</div>
-				</div>
+			<div class="flex w-full flex-row gap-2 transition-all duration-300 relative z-10 my-5">
+				<Syllabus syllabus={syllabus_1} on:mouseenter={() => hoveredBg = syllabus_1[0]?.bgColor || ''} on:mouseleave={() => hoveredBg = ''} />
+				<Syllabus syllabus={syllabus_2} on:mouseenter={() => hoveredBg = syllabus_2[0]?.bgColor || ''} on:mouseleave={() => hoveredBg = ''} />
+				<Syllabus syllabus={syllabus_3} on:mouseenter={() => hoveredBg = syllabus_3[0]?.bgColor || ''} on:mouseleave={() => hoveredBg = ''} />
+				<Syllabus syllabus={syllabus_4} on:mouseenter={() => hoveredBg = syllabus_4[0]?.bgColor || ''} on:mouseleave={() => hoveredBg = ''} />
 			</div>
 		</div>
 
-		<div
-			class="flex flex-col gap-0 justify-center items-center w-full px-8 mt-15"
-		>
-			<h1 class="relative text-4xl z-100">Content</h1>
-
-			<img
-				class="mx-auto -mb-4 w-1/4 z-100"
-				src="/src/lib/assets/div.svg"
-				alt="divider"
-			/>
-			<div class="flex flex-row gap-0">
-				<Syllabus syllabus={syllabus_1} />
-				<Syllabus syllabus={syllabus_2} />
-				<Syllabus syllabus={syllabus_3} />
-				<Syllabus syllabus={syllabus_4} />
-			</div>
-		</div>
-
-		<h1 class="relative text-4xl z-100">Uhh... memes?</h1>
+		<h1 class="relative text-4xl z-100">And, uhh... memes?</h1>
 
 		<img
 			class="mx-auto w-1/4 z-100"

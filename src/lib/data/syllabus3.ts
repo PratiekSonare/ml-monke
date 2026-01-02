@@ -2,9 +2,12 @@ export const syllabus_3 = [
 	{
 		id: 3,
 		title: "Regression",
-		subtitle: "",
-		bgColor: "bg-orange-50",
+		subtitle: "fitting dots to lines, like a monke.",
+		bgColor: "bg-orange-700",
 		borderColor: "border-orange-500",
+		shadowColor: "#C93800",
+		titleColor: "text-orange-700",
+		contentColor: "bg-orange-100",
 		sections: [
 			{
 				id: "3.1",

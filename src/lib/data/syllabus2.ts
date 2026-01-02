@@ -3,8 +3,11 @@ export const syllabus_2 = [
 		id: 2,
 		title: "Machine Learning",
 		subtitle: "making the 0s and 1s work for us.",
-		bgColor: "bg-purple-50",
+		bgColor: "bg-purple-700",
 		borderColor: "border-purple-500",
+		shadowColor: "#8100DA",
+		titleColor: "text-purple-700",
+		contentColor: "bg-purple-100",
 		sections: [
 			{
 				id: "2.1",

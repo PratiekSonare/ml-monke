@@ -2,9 +2,12 @@ export const syllabus_4 = [
 	{
 		id: 4,
 		title: "Classification",
-		subtitle: "",
-		bgColor: "bg-green-50",
+		subtitle: "do dis be a danger banan or gud banan?",
+		bgColor: "bg-green-700",
 		borderColor: "border-green-500",
+		shadowColor: "#008139",
+		titleColor: "text-green-700",
+		contentColor: "bg-green-100",
 		sections: [
 			{
 				id: "4.1",

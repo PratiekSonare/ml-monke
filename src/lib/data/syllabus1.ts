@@ -3,17 +3,22 @@ export const syllabus_1 = [
 		id: 1,
 		title: "Basic Mathematics",
 		subtitle: "linear algebra, calculus & prob - the basics.",
-		bgColor: "bg-blue-50",
+		bgColor: "bg-blue-700",
 		borderColor: "border-blue-500",
+		shadowColor: "#1B49E5",
+		titleColor: "text-blue-700",
+		contentColor: "bg-blue-100",
 		sections: [
 			{
 				id: "1.1",
 				title: "Functions",
 				subtitle: "",
 				items: [
-					{ id: "1.1.1", topic: "Linear v/s Non-linear" },
-					{ id: "1.1.2", topic: "What are models output?" },
-					{ id: "1.1.3", topic: "Activation Functions: Need, Purpose" },
+					{ id: "1.1.1", topic: "What are functions?" },
+					{ id: "1.1.2", topic: "Banan & Banker Monke" },
+					{ id: "1.1.3", topic: "Algebra of Functions" },
+					{ id: "1.1.4", topic: "Linear v/s Non-linear Functions" },
+					{ id: "1.1.5", topic: "Why non-linear functions?" },
 				],
 			},
 			{

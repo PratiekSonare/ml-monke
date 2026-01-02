@@ -1,12 +1,15 @@
 <script lang="ts">
+    import { cursorColor } from "$lib";
     export let title: string;
     export let content: string[];
 </script>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-    class="flex flex-col gap-1 w-full p-3 bg-purple-500 shadow-col-black"
+    on:mouseenter={() => cursorColor.set('purple')}
+    class="flex flex-col w-full bg-purple-300 shadow-col-black"
 >
-    <div class="mb-1 flex flex-row gap-2 items-center justify-center">
+    <div class="flex flex-row gap-3 items-center justify-center bg-purple-100">
         <svg class="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
             ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
                 id="SVGRepo_tracerCarrier"
@@ -22,7 +25,7 @@
                 ></path>
             </g></svg
         >
-        <p class="text-2xl bFont text-purple-800">To Remember</p>
+        <p class="text-2xl bFont text-purple-800 my-1">To Remember</p>
         <svg class="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
             ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
                 id="SVGRepo_tracerCarrier"
@@ -39,23 +42,31 @@
             </g></svg
         >
     </div>
-    <p class="text-lg mb-1 italic text-center underline underline-offset-8">
-        {title}
-    </p>
-    {#each content as item}
-        <span class="italic -mb-1"> • {item}</span>
-    {/each}
+    <!-- <div class="h-px w-5/6 mx-auto border-2 border-purple-800 border-dotted"></div> -->
+    <div class="h-1 w-full bg-[#8B5CF6]"></div>
+    <div class="flex flex-col p-3">
+        <p class="text-lg mb-1 italic text-center underline">
+            {title}
+        </p>
+        {#each content as item}
+            <span class="italic -mb-1"> • {item}</span>
+        {/each}
+    </div>
 </div>
 
 
 <style>
-    .shadow-col {
-        border: 4px solid #6E18AF;
-        box-shadow: #6E18AF 4px 4px;
+    .shadow-col-black {
+        border: 4px solid #8B5CF6;
+        box-shadow: #8B5CF6 -4px 4px;
+        transition: all 0.3s ease;
     }
 
-    .shadow-col-black {
-        border: 4px solid black;
-        box-shadow: black 4px 4px;
+    .shadow-col-black:hover {
+        box-shadow: #8B5CF6 -6px 6px;
+    }
+
+    ::selection {
+        background-color: #8B5CF6;
     }
 </style>

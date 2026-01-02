@@ -2,6 +2,7 @@
     import monke from "$lib/assets/monke.svg";
     import thinkingMonke from "$lib/assets/thinking_monke.svg";
     import thinkingMonke2 from "$lib/assets/thinking_monke_2.svg";
+    import Title from "./dynamic/Title.svelte";
 
     let isHovered = false;
 </script>
@@ -27,9 +28,7 @@
     {/if}
     <div class="flex flex-row items-center justify-center pl-24">
         <div class="flex flex-col">
-            <h1 class="text-2xl">
-                machine learning<span class="lFont mx-2">by</span><span class="text-orange-600 underline">Monke</span>
-            </h1>
+            <Title className="text-2xl" />
             <p class="text-sm">
                 monke will teach you <span class="italic underline"
                     >machine learning</span
