@@ -177,7 +177,7 @@
 				{/each}
 			</div>
 		</div>
-	</div>
+	</div> nb
 
 	<Footer /> 
 </main>

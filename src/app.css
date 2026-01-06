@@ -47,6 +47,7 @@ h1,
 .bFont {
     font-family: 'Space Grotesk Variable', sans-serif;
     font-weight: 700;
+    letter-spacing: -0.05em;
 }
 
 p span {

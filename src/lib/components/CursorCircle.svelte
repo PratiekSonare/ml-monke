@@ -16,13 +16,13 @@
 	});
 </script>
 
-<div class="cursor-circle" style="left: {x - 15}px; top: {y - 15}px; border-color: {$cursorColor}; box-shadow: 0 0 10px {$cursorColor};"></div>
+<div class="cursor-circle" style="left: {x - 15}px; top: {y - 15}px; border-color: {$cursorColor};"></div>
 
 <style>
 	.cursor-circle {
 		position: fixed;
-		width: 30px;
-		height: 30px;
+		width: 20px;
+		height: 20px;
 		border: 3px solid;
 		border-radius: 50%;
 		pointer-events: none;
