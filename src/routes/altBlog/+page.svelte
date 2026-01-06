@@ -21,7 +21,7 @@
         subtitle:
             "Learning functions can help you transform your inputs into dedicated outputs. For ex: turn a single banan into multiple banans! STONKS. Consider functions to be ",
 
-            sections: [
+        sections: [
             {
                 grandparentId: "1",
                 parentId: "1.1",
@@ -204,7 +204,7 @@
         <div
             id="main-content"
             style="width: {100 - sidebarWidth}%"
-            class="overflow-y-auto overflow-x-hidden flex flex-col gap-15 items-center px-4"
+            class="overflow-y-auto overflow-x-hidden flex flex-col items-start px-4"
         >
             <div
                 class="flex flex-col w-full gap-5 justify-center items-start my-5"
@@ -213,7 +213,9 @@
                     <h1 class="text-4xl uppercase strong tracking-tighter">
                         Chapter {data.sections[0].grandparentId}: {data.parentTitle}
                     </h1>
-                    <div class="flex flex-row justify-between items-end-safe w-full">
+                    <div
+                        class="flex flex-row justify-between items-end-safe w-full"
+                    >
                         <div class="space-y-0 w-1/2">
                             <h1
                                 class="text-xl uppercase strong tracking-tighter text-gray-500"
