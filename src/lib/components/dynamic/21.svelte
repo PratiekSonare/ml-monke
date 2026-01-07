@@ -1,7 +1,7 @@
 <div class="w-full grid grid-cols-3 gap-4 h-1/2 max-h-1/2">
-    <div class="flex flex-col shadow-col overflow-y-auto h-full">
+    <div class="col-span-2 flex flex-col shadow-col overflow-y-auto h-full">
         <div
-            class="flex-[0_0_25%] p-3 flex flex-row justify-between items-center border-b-4 border-black bg-yellow-500"
+            class="flex-[0_0_25%] p-3 flex flex-row justify-between items-center border-b-4 border-black bg-purple-500"
         >
             <div class="flex flex-col">
                 <h1 class="text-lg font-bold px-2 bg-black text-white w-fit">
@@ -28,7 +28,7 @@
         </div>
 
         <!-- content area -->
-        <div class="flex-1 bg-yellow-200 overflow-y-auto">
+        <div class="flex-1 bg-purple-200 overflow-y-auto">
             <!-- text  -->
             <p>
                 ○ Functions are <span>“rules”</span> that define a
@@ -56,7 +56,7 @@
 
     <div class="flex flex-col shadow-col overflow-y-auto">
         <!-- content area -->
-        <div class="bg-yellow-200">
+        <div class="bg-purple-200">
             <!-- text  -->
             <p>
                 ○ Consider each function to be a machine. This machine asks for
@@ -84,53 +84,6 @@
             src="https://cdn.jsdelivr.net/gh/PratiekSonare/all-manim-animations@main/chapter_1/functionIntroduction-alt.gif"
             class=""
         />
-    </div>
-
-    <div class="flex flex-col shadow-col overflow-y-auto">
-        <!-- content area -->
-        <div class="bg-yellow-200">
-            <!-- text  -->
-            <p>○ It is important to note that -</p>
-            <ol class="list-decimal list-inside p-3">
-                <li>
-                    each numerical input must produce a <span>unique</span> output.
-                </li>
-                <li>
-                    <ol type="a" class="list-inside ml-6">
-                        <li><span>domain</span>: set of all possible inputs</li>
-
-                        <li><span>range</span>: set of all possible outputs</li>
-
-                        <li>
-                            <span>codomain</span>: set that contains all
-                            possible outputs
-                        </li>
-                    </ol>
-                </li>
-                <li>
-                    multiple inputs can have the same output (many-to-one
-                    relationship)
-                </li>
-                <li>
-                    but a single input cannot have multiple outputs at the same
-                    time (not one-to-many)
-                </li>
-            </ol>
-
-            <div class="relative h-1 w-full bg-black">
-                <div class="absolute -top-2 right-0">
-                    <h1 class="bg-black text-white px-2 w-fit">remember!</h1>
-                </div>
-            </div>
-        </div>
-
-        <video
-            muted
-            autoplay
-            loop
-            src="https://cdn.jsdelivr.net/gh/PratiekSonare/all-manim-animations@main/chapter_1/functionMapping.mp4"
-            class=""
-        ></video>
     </div>
 </div>
 

@@ -14,6 +14,8 @@
     import ContextPanel from "$lib/components/dynamic/ContextPanel.svelte";
     import ProgressBar from "$lib/components/dynamic/ProgressBar.svelte";
     import OneOneOne from "$lib/components/dynamic/111.svelte";
+    import OneTwo from "$lib/components/dynamic/11.svelte";
+    import TwoOne from "$lib/components/dynamic/21.svelte";
 
     // Hardcoded data for demonstration - using content from 1.1
     const data = {
@@ -231,6 +233,10 @@
             </div>
 
             <OneOneOne />
+            <div class="my-2"></div>
+            <OneTwo />
+            <div class="my-2"></div>
+            <TwoOne />
         </div>
     </div>
 
