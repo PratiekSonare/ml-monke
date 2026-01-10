@@ -13,9 +13,9 @@
     import { onMount } from "svelte";
     import ContextPanel from "$lib/components/dynamic/ContextPanel.svelte";
     import ProgressBar from "$lib/components/dynamic/ProgressBar.svelte";
-    import OneOneOne from "$lib/components/dynamic/111.svelte";
-    import OneTwo from "$lib/components/dynamic/11.svelte";
-    import TwoOne from "$lib/components/dynamic/21.svelte";
+    import OneOneOne from "./111.svelte";
+    import OneTwo    from "./11.svelte";
+    import TwoOne    from "./21.svelte";
 
     // Hardcoded data for demonstration - using content from 1.1
     const data = {

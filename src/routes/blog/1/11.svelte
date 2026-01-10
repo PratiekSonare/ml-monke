@@ -3,6 +3,13 @@
 
     let calculatorElement: HTMLDivElement;
     let showButtons = false;
+    let selectedButton: string | null = null;
+    let isCorrect = false;
+
+    function handleClick(buttonId: string) {
+        selectedButton = buttonId;
+        isCorrect = buttonId === 'correct';
+    }
 
     onMount(() => {
         // Load Desmos API
@@ -22,12 +29,30 @@
 
             // Load a default graph (example: quadratic function)
             // You can customize these expressions or load saved graph states
-            calculator.setExpression({ id: "graph1", latex: "y=x^2" });
+            // calculator.setExpression({ id: "graph1", latex: "y=x^2" });
             // @ts-ignore
             calculator.setExpression({
                 id: "graph2",
                 latex: "y=2x+1",
-                color: Desmos.Colors.RED,
+            });
+
+            calculator.setExpression({
+                id: "graph3",
+                latex: "x=2",
+                color:Desmos.Colors.RED
+            });
+ 
+            calculator.setExpression({
+                id: "graph4",
+                latex: "x=4",
+                color:Desmos.Colors.RED
+            });
+
+            calculator.setExpression({
+                id: "shade",
+                latex: "y \\leq 2x+1 \\left\\{2 \\leq x \\leq 4\\right\\}",
+                color: Desmos.Colors.BLUE,
+                fillOpacity: 0.3
             });
 
             // Set viewport
@@ -37,6 +62,8 @@
                 bottom: -2,
                 top: 10,
             });
+
+            calculator
         };
         document.head.appendChild(script);
     });
@@ -108,13 +135,13 @@
         <div class="bg-cyan-200">
             <!-- text  -->
             <p>
-                ○ x-axis: number of banans given <span>(input)</span> & y-axis: number of coins you get <span>(output)</span>
+                ○ x-axis: number of 🍌 given <span>(input)</span> & y-axis: number of 🪙 you get <span>(output)</span>
             </p>
             <p>
-                ○ Blue line: monke <span>good mood</span> &lt;3 & Red line: <span>monke angy </span> :(
+                ○ Below is a graph for a function (y = 2x + 1), feel free to interact with it!
             </p>
             <p>
-                ○ These lines are two different functions that relate banans to coins <span>(variables)</span>
+                ○ Hence, for every 🍌 that you give, you get (2*🍌+1) count of 🪙s in return!
             </p>
             <div class="relative h-1 w-full bg-black z-20">
                 <div class="absolute -top-2 right-0">
@@ -130,14 +157,13 @@
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <div class="flex flex-row justify-between items-start p-2 transition-all duration-500 ease-in-out cursor-pointer {showButtons ? 'h-48' : 'h-16'}" on:click={() => showButtons = !showButtons}>
                 <p class="">
-                    Can you tell me <span>when</span> must a person visit Banker
-                    Monke to get more coins?
+                    Tell me, if you have 2 &ltlarr; 🍌 &LT; 4, then how many 🪙s can you possibly get? <span>(range)</span>
                 </p>
                 <div class="flex-1/2 flex flex-col gap-2 overflow-hidden transition-all duration-500 ease-in-out {showButtons ? 'opacity-100 max-w-xs max-h-48' : 'opacity-0 max-w-0 max-h-0'}" on:click={(e) => e.stopPropagation()}>
-                    <button class="px-4 py-1 whitespace-nowrap">Monday</button>
-                    <button class="px-4 py-1 whitespace-nowrap">Wednesday</button>
-                    <button class="px-4 py-1 whitespace-nowrap">Friday</button>
-                    <button class="px-4 py-1 whitespace-nowrap">Sunday</button>
+                    <button id="correct" class="px-4 py-1 whitespace-nowrap border-2 border-black {selectedButton === 'correct' ? (isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white') : (selectedButton && !isCorrect && 'correct' === 'correct' ? 'bg-green-500 text-white' : '')}" on:click={() => handleClick('correct')}> [5-10) </button>
+                    <button id="wrong1" class="px-4 py-1 whitespace-nowrap border-2 border-black {selectedButton === 'wrong1' ? (isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white') : (selectedButton && !isCorrect && 'wrong1' === 'correct' ? 'bg-green-500 text-white' : '')}" on:click={() => handleClick('wrong1')}> [0-5) </button>
+                    <button id="wrong2" class="px-4 py-1 whitespace-nowrap border-2 border-black {selectedButton === 'wrong2' ? (isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white') : (selectedButton && !isCorrect && 'wrong2' === 'correct' ? 'bg-green-500 text-white' : '')}" on:click={() => handleClick('wrong2')}> [10-15)</button>
+                    <button id="wrong3" class="px-4 py-1 whitespace-nowrap border-2 border-black {selectedButton === 'wrong3' ? (isCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white') : (selectedButton && !isCorrect && 'wrong3' === 'correct' ? 'bg-green-500 text-white' : '')}" on:click={() => handleClick('wrong3')}> 15+  </button>
                 </div>
             </div>
         </div>
@@ -160,11 +186,6 @@
 <style>
     button {
         border: 2px solid black;
-    }
-
-    button:hover {
-        background-color: #e2e8f0;
-        transition: all 0.3s ease;
     }
 
     .shadow-col {

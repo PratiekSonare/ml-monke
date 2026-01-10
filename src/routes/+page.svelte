@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>MLMonke</title>
+	<title>machine learning by Monke</title>
 	<meta name="description" content="monke teaches you ml :3" />
 </svelte:head>
 

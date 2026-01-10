@@ -9,6 +9,6 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<CursorCircle />
+<!-- <CursorCircle /> -->
 
 {@render children()}
